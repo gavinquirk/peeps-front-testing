@@ -5,23 +5,13 @@ import Axios from 'axios';
 // const cookies = new Cookies();
 
 export default class PeopleBox extends Component {
-  state = {
-    token: ''
-  };
-
   componentDidMount() {
     // Log In User
     Axios.post('http://localhost:5000/api/v1/auth/login', {
       email: 'mary@email.com',
       password: '123456'
     }).then(res => {
-      // console.log(res.data.token);
       const token = 'Bearer ' + res.data.token;
-      // Set Token Cookie
-      // cookies.set('token', token, { path: '/' });
-      // this.setState({
-      //   token
-      // });
       this.getCurrentUser(token);
     });
 
